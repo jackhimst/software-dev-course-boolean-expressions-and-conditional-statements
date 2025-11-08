@@ -28,6 +28,9 @@ const readline = require('readline-sync');
 
 const hasTorch = true;
 const hasMap = false;
+const hasCompass = true;
+const hasJarOfPeanutButter = true;
+const hasJarOfHoney = true;
 
 console.log("You see two paths: one leads to the mountains, the other to the village.");
 const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
@@ -35,11 +38,20 @@ const choice = readline.question("Do you go to the 'mountains' or the 'village'?
 if (choice === "mountains" && hasTorch) {
   console.log("You safely navigate through the dark mountains.");
 } else if (choice === "mountains" && !hasTorch) {
-  console.log("It's too dark to proceed. You decide to turn back.");
-} else if (choice === "village" || hasMap) {
+    console.log("It's too dark to proceed. You decide to turn back.");
+    if (hasJarOfHoney || hasJarOfPeanutButter) {
+      console.log("A hungry bear smells your food. It charges you from behind and you lose consciousness.");
+    }
+} else if (choice === "village" || hasMap || hasCompass) {
   console.log("You find your way to the village.");
+    if (hasJarOfHoney && !hasMap) {
+      console.log("You trade the jar of honey with a hungry villager for a map.");
+    if (hasJarOfHoney && !hasCompass) {
+      console.log("You trade the jar of peanut butter to an wandering villager for a compass.");
+      }
+    } 
 } else {
-  console.log("You get lost and wander aimlessly.");
+    console.log("You get lost and wander aimlessly.");
 }
 
 /* 
